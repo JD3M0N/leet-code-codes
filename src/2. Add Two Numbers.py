@@ -14,17 +14,21 @@ class Solution(object):
         dummy_head = ListNode(0)
         current = dummy_head
         carry = 0
+        
         while l1 or l2 or carry:
             l1_val = l1.val if l1 else 0
             l2_val = l2.val if l2 else 0
             total = l1_val + l2_val + carry
+            print(f"l1_val: {l1_val}, l2_val: {l2_val}, carry previo: {carry}, total: {total}")
             carry = total // 10
+            print(f"Nuevo carry: {carry}, dígito agregado: {total % 10}")
             current.next = ListNode(total % 10)
             current = current.next
             if l1:
                 l1 = l1.next
             if l2:
                 l2 = l2.next
+                
         return dummy_head.next
     
     
@@ -45,8 +49,8 @@ def linked_list_to_list(node):
     return result
 
 # Prueba con el ejemplo dado
-l1 = create_linked_list([2, 4, 3])
-l2 = create_linked_list([5, 6, 4])
+l1 = create_linked_list([9,9,9,9,9,9,9])
+l2 = create_linked_list([9,9,9,9])
 solution = Solution()
 result_node = solution.addTwoNumbers(l1, l2)
 print(linked_list_to_list(result_node))  # Debe imprimir [7, 0, 8]
